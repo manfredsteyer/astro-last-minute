@@ -1,6 +1,5 @@
 ---
 import type { APIRoute } from 'astro';
-import Info from '../../components/Info.astro';
 import { BASE_URL } from '../../conf';
 import Layout from '../../layouts/Layout.astro';
 import type { Flight } from '../../model/Flight';
@@ -8,6 +7,9 @@ import type { Flight } from '../../model/Flight';
 import Price from '../../components/Price';
 import PriceNg from '../../components/PriceNg'
 import PriceVue from '../../components/Price.vue';
+import { enableProdMode } from '@angular/core';
+
+enableProdMode();
 
 export async function getStaticPaths() {
   
@@ -22,15 +24,6 @@ export async function getStaticPaths() {
   });
 
 }
-
-export const get: APIRoute = ({ params, request }) => {
-  console.log(params, request);
-  return {
-    body: JSON.stringify({
-        a: 1,
-    })
-  };
-};
 
 const {id} = Astro.params;
 const {flight} = Astro.props;
@@ -67,12 +60,6 @@ const {flight} = Astro.props;
 	
 	<PriceVue client:visible title={flight.title}></PriceVue>
 
-
-
-
-
-
-	
 	<PriceNg client:visible title={flight.title}></PriceNg>
   </main>
 

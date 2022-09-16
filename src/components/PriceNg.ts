@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input } from "@angular/core";
+import { CHECKOUT_URL } from "../conf";
 
 @Component({
   standalone: true,
@@ -7,7 +8,7 @@ import { Component, Input } from "@angular/core";
   selector: "angular-price",
   template: `
     <div class="island">
-      <h2 class="mt0">Book now!</h2>
+      <h2 class="mt0"><img class="fw-logo" src="/assets/angular.png"/>Book now!</h2>
       <h3>{{ title }}</h3>
       <button class="mr10 counter" (click)="subtract()">-</button>
       {{ count }} People
@@ -33,6 +34,6 @@ export default class PriceComponent {
   }
 
   checkout(): void {
-    location.href = "http://www.google.com";
+    location.href = CHECKOUT_URL;
   }
 }

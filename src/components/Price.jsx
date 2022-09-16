@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { CHECKOUT_URL } from '../conf';
 
 export default function CounterReact({ title }) {
   const [count, setCount] = useState(1);
@@ -17,12 +18,12 @@ export default function CounterReact({ title }) {
   };
 
   const checkout = () => {
-    location.href='http://www.google.com'
+    location.href = CHECKOUT_URL;
   }
 
   return (
     <div className="island">
-      <h2 className="mt0">Book now!</h2>
+      <h2 className="mt0"><img className="fw-logo" src="/assets/react.png"/>Book now!</h2>
       <h3>{title}</h3>
       <button className="mr10 counter" onClick={subtract}>-</button>
       {count} People

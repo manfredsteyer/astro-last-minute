@@ -1,6 +1,6 @@
 <template>
     <div class="island">
-      <h2 class="mt0">Book now!</h2>
+      <h2 class="mt0"><img class="fw-logo" src="/assets/vue.png"/>Book now!</h2>
       <h3>{{title}}</h3>
       <button class="mr10 counter" @click="subtract">-</button>
       {{count}} People
@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { CHECKOUT_URL } from '../conf';
+
 export default {
   name: "CounterVue",
   props: {
@@ -32,7 +34,7 @@ export default {
       this.price = this.count * 1000;
     },
     checkout() {
-      location.href='http://www.google.com'
+      location.href=CHECKOUT_URL
     }
   },
 };
