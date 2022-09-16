@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "title": "New York - 5 days",
+        "img": "http://localhost:3000/assets/ny.jpg"
+    },
+    {
+        "id": 2,
+        "title": "One more time New York - 3 days",
+        "img": "/assets/ny.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Another New York trip - 7 days",
+        "img": "/assets/ny.jpg"
+    },
+    {
+        "id": 4,
+        "title": "Aaand, finally, New York - 7 days",
+        "img": "/assets/ny.jpg"
+    }
+]

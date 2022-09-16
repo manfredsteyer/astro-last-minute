@@ -1,0 +1,139 @@
+---
+import type { APIRoute } from 'astro';
+import Info from '../../components/Info.astro';
+import { BASE_URL } from '../../conf';
+import Layout from '../../layouts/Layout.astro';
+import type { Flight } from '../../model/Flight';
+
+import Price from '../../components/Price';
+import PriceNg from '../../components/PriceNg'
+import PriceVue from '../../components/Price.vue';
+
+export async function getStaticPaths() {
+  
+  const flights = await fetch(`${BASE_URL}/assets/data.json`)
+                .then(r => r.json()) as Flight[];
+  
+  return flights.map((flight) => {
+    return {
+      params: { id: '' + flight.id },
+      props: { flight }
+    };
+  });
+
+}
+
+export const get: APIRoute = ({ params, request }) => {
+  console.log(params, request);
+  return {
+    body: JSON.stringify({
+        a: 1,
+    })
+  };
+};
+
+const {id} = Astro.params;
+const {flight} = Astro.props;
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<h1>{flight.title}</h1>
+		<p class="instructions">
+			Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+    </p>
+
+    <img src={flight.img}>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae qui quasi corrupti eum eius suscipit, natus eaque illum distinctio sapiente quis fugiat temporibus doloribus nostrum maiores, unde saepe reiciendis!
+    </p>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae qui quasi corrupti eum eius suscipit, natus eaque illum distinctio sapiente quis fugiat temporibus doloribus nostrum maiores, unde saepe reiciendis!
+    </p>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae qui quasi corrupti eum eius suscipit, natus eaque illum distinctio sapiente quis fugiat temporibus doloribus nostrum maiores, unde saepe reiciendis!
+    </p>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae qui quasi corrupti eum eius suscipit, natus eaque illum distinctio sapiente quis fugiat temporibus doloribus nostrum maiores, unde saepe reiciendis!
+    </p>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae qui quasi corrupti eum eius suscipit, natus eaque illum distinctio sapiente quis fugiat temporibus doloribus nostrum maiores, unde saepe reiciendis!
+    </p>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae qui quasi corrupti eum eius suscipit, natus eaque illum distinctio sapiente quis fugiat temporibus doloribus nostrum maiores, unde saepe reiciendis!
+    </p>
+
+    <Price client:visible title={flight.title}></Price>
+	
+	<PriceVue client:visible title={flight.title}></PriceVue>
+
+
+
+
+
+
+	
+	<PriceNg client:visible title={flight.title}></PriceNg>
+  </main>
+
+</Layout>
+
+<style>
+	:root {
+		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
+	}
+
+	h1 {
+		margin: 2rem 0;
+	}
+
+	main {
+		margin: auto;
+		padding: 1em;
+		max-width: 60ch;
+	}
+
+	.text-gradient {
+		font-weight: 900;
+		background-image: var(--astro-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 100% 200%;
+		background-position-y: 100%;
+		border-radius: 0.4rem;
+		animation: pulse 4s ease-in-out infinite;
+	}
+
+	@keyframes pulse {
+		0%,
+		100% {
+			background-position-y: 0%;
+		}
+		50% {
+			background-position-y: 80%;
+		}
+	}
+
+	.instructions {
+		line-height: 1.6;
+		margin: 1rem 0;
+		background: #4f39fa;
+		padding: 1rem;
+		border-radius: 0.4rem;
+		color: var(--color-bg);
+	}
+
+	.instructions code {
+		font-size: 0.875em;
+		border: 0.1em solid var(--color-border);
+		border-radius: 4px;
+		padding: 0.15em 0.25em;
+	}
+
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+</style>

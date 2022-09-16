@@ -1,0 +1,24 @@
+---
+import FlightCard from './FlightCard.astro'
+import type { Flight } from '../model/Flight';
+import { BASE_URL } from '../conf';
+
+const flights = await fetch(`${BASE_URL}/assets/data.json`)
+                .then(r => r.json()) as Flight[];
+
+---
+<ul role="list" class="link-card-grid">
+
+    {flights.map(f => <FlightCard flight={f}></FlightCard>)}
+
+</ul>
+
+<style>
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
+</style>
+
