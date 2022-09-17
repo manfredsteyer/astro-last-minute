@@ -23,7 +23,7 @@ export default function CounterReact({ title }) {
 
   return (
     <div className="island">
-      <h2 className="mt0"><img className="fw-logo" src="/assets/react.png"/>Book now!</h2>
+      <h2 className="mt0">Book now!</h2>
       <h3>{title}</h3>
       <button className="mr10 counter" onClick={subtract}>-</button>
       {count} People
