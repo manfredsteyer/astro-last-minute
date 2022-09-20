@@ -1,5 +1,5 @@
 export interface Flight {
-	id: number;
-	title: string;
+    id: number;
+    title: string;
     img: string;
 }
