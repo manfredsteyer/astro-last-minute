@@ -1,6 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Flights from '../components/Flights.astro';
+import FlightCard from '../components/FlightCard.astro';
+import type { Flight } from '../model/Flight';
+import { BASE_URL } from '../conf';
+
+const flights = await fetch(`${BASE_URL}/assets/data.json`)
+                .then(r => r.json()) as Flight[];
+
 ---
 
 <Layout title="Welcome to Astro.">
@@ -9,11 +15,17 @@ import Flights from '../components/Flights.astro';
 		<p class="instructions">
 			Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
 		</p>
-		<Flights></Flights>
+		<ul role="list" class="link-card-grid">
+
+			{flights.map(f => <FlightCard flight={f}></FlightCard>)}
+
+		</ul>
 	</main>
 </Layout>
 
+
 <style>
+
 	:root {
 		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
 	}
@@ -64,4 +76,11 @@ import Flights from '../components/Flights.astro';
 		border-radius: 4px;
 		padding: 0.15em 0.25em;
 	}
+
+	.link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
 </style>
